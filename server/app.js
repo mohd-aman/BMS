@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const rateLimit = require('express-rate-limit');
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -10,7 +11,13 @@ const theatreRoute = require('./routes/theatreRoutes');
 const showRoute = require('./routes/showRoutes');
 const bookRoute = require('./routes/bookingRoutes');
 
+
 require('dotenv').config();// load the environment variables
+
+app.use(express.static(path.join(__dirname, 'build') ));
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname, 'build','index.html'));
+})
 
 //connect to the database
 connectDB(process.env.DB_URL);
