@@ -11,6 +11,7 @@ const theatreRoute = require('./routes/theatreRoutes');
 const showRoute = require('./routes/showRoutes');
 const bookRoute = require('./routes/bookingRoutes');
 
+const app = express();
 
 require('dotenv').config();// load the environment variables
 
@@ -22,7 +23,7 @@ app.get('*',(req,res)=>{
 //connect to the database
 connectDB(process.env.DB_URL);
 
-const app = express();
+
 const PORT = 8080;
 
 app.use(helmet());
